@@ -6,10 +6,12 @@ import {
 import Layout from 'app/videos/components/suggestion-list-layout';
 import Empty from 'app/videos/components/empty';
 import Separator from 'app/videos/components/vertical-separator';
+import Suggestion from 'app/videos/components/suggestion';
 
 class SuggestionList extends Component {
   renderEmpty   = () => <Empty text="No hay sugerencias" />
   itemSeparator = () => <Separator />
+  renderItem    = ({item}) => <Suggestion {...item} />
 
   render () {
     const list = new Array(2).fill(0).map( (i, index) => ( {key: `${index}`, title: ` title ${index}` } ))
@@ -19,7 +21,7 @@ class SuggestionList extends Component {
           ListEmptyComponent={this.renderEmpty}
           ItemSeparatorComponent={this.itemSeparator}
           data={list}
-          renderItem={ ({ item }) => <Text>{item.title}</Text>}
+          renderItem={this.renderItem}
         />
       </Layout>
     )
